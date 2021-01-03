@@ -1,6 +1,6 @@
 FROM java:8-jre
 RUN mkdir -p /opt/usersapp/ 
-COPY ./users-app.jar /opt/usersapp/
+COPY ./users-in-mem-app.jar /opt/usersapp/
 WORKDIR /opt/usersapp/
 EXPOSE 8000
-CMD ["java", "-jar", "users-app.jar"]
+CMD ["java", "-jar", "users-in-mem-app.jar"]

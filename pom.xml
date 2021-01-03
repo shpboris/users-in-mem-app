@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.test</groupId>
-	<artifactId>users-app</artifactId>
+	<artifactId>users-in-mem-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>users-app</name>
+	<name>users-in-mem-app</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
