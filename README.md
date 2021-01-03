@@ -1,4 +1,4 @@
-# users-app
+# users-in-mem-app
 Users REST API based on Spring Boot and Swagger. 
 Can be deployed to Kubernetes/Istio environment. 
 
@@ -9,9 +9,9 @@ Can be deployed to Kubernetes/Istio environment.
 3. The application's docker image can be found at
 https://hub.docker.com/repository/docker/shpboris/usersmemrestserver
 
-4. To expose the application using plain docker on port 8888, run the following: sudo docker run -d --name users-app-docker -e CONTEXT_PATH=env1 -p 8888:8000 shpboris/usersmemrestserver
+4. To expose the application using plain docker on port 8888, run the following: sudo docker run -d --name users-in-mem-app-docker -e CONTEXT_PATH=env1 -p 8888:8000 shpboris/usersmemrestserver
 
-5. To deploy users REST application to Kubernetes/Istio, execute the following using files from users-app/src/main/resources/deployment/ folder of this project:
+5. To deploy users REST application to Kubernetes/Istio, execute the following using files from users-in-mem-app/src/main/resources/deployment/ folder of this project:
 
     5.1 kubectl apply -f deployment-env1.yml
 
