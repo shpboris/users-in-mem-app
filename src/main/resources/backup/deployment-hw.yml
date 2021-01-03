@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-hw-svc
+  namespace: my-test-ns
+  labels:
+    app: my-hw-lbl
+spec:
+  ports:
+  - name: http
+    port: 8081
+    targetPort: 8080
+  selector:
+    run: my-hw-lbl
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-hw-dpl
+  namespace: my-test-ns
+  labels:
+    app: my-hw-lbl
+spec:
+  selector:
+    matchLabels:
+      run: my-hw-lbl
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-hw-lbl
+    spec:
+      containers:
+        - name: hello-world
+          image: gcr.io/google-samples/node-hello:1.0
+          ports:
+            - containerPort: 8080
+              protocol: TCP

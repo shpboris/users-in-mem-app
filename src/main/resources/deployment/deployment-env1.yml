@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-env1-svc
+  namespace: my-test-ns
+  labels:
+    app: my-env1-lbl
+spec:
+  ports:
+  - name: http
+    port: 8001
+    targetPort: 8000
+  selector:
+    app: my-env1-lbl
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-env1-dpl
+  namespace: my-test-ns
+  labels:
+    app: my-env1-lbl
+spec:
+  selector:
+    matchLabels:
+      app: my-env1-lbl
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-env1-lbl
+    spec:
+      containers:
+        - name: usersmemrestserver
+          image: shpboris/usersmemrestserver
+          env:
+          - name: "CONTEXT_PATH"
+            value: "/env1"
+          ports:
+            - containerPort: 8000
+              protocol: TCP

@@ -1,0 +1,33 @@
+1.
+The application is based on Spring Boot and allows to manage users (CRUD operations) through Swagger UI.
+Two identical Kubernetes Microservices are created and exposed using Istio.
+The services differ only with their URLs.
+
+2.
+To access the local Swagger UI use this URL - http://localhost:8000/env1/swagger-ui.html
+
+In Kubernetes environment something like below should be used to access any of the two services
+http://192.168.99.100:31308/env1/swagger-ui.html
+http://192.168.99.100:31308/env2/swagger-ui.html
+
+3.
+All the Kubernetes and Docker files are located at resources/deployment folder
+
+4.
+The context path is controlled through CONTEXT_PATH environment varibale.
+See application.properties file and
+users-app\.idea\runConfigurations\UsersApplication.xml
+
+5.
+To expose the application using plain docker on port 8888, run the following:
+sudo docker run -d --name users-app-docker -e CONTEXT_PATH=env1 -p 8888:8000 shpboris/usersmemrestserver
+
+6.
+To deploy the users REST application to Kubernetes, execute the following
+using files from users-app/src/main/resources/deployment/ folder of this project:
+
+6.1 kubectl apply -f deployment-env1.yml
+6.2 kubectl apply -f deployment-env2.yml
+6.3 kubectl apply -f virtual-service.yml
+6.4 kubectl apply -f gateway.yml
+
