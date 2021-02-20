@@ -7,11 +7,20 @@ The services differ only with their URLs.
 To access the local Swagger UI use this URL - http://localhost:8000/env1/swagger-ui.html
 
 In Kubernetes environment something like below should be used to access any of the two services
+
+2.1
+Minikube
 http://192.168.99.100:31308/env1/swagger-ui.html
 http://192.168.99.100:31308/env2/swagger-ui.html
 
+2.2
+Docker desktop
+http://localhost:80/env1/swagger-ui.html
+http://localhost:80/env2/swagger-ui.html
+
 3.
-All the Kubernetes and Docker files are located at resources/deployment folder
+All the Kubernetes deployment folder
+Dockerfile and Tiltfile directly under the users-in-mem-app
 
 4.
 The context path is controlled through CONTEXT_PATH environment varibale.
@@ -24,10 +33,15 @@ sudo docker run -d --name users-in-mem-app-docker -e CONTEXT_PATH=env1 -p 8888:8
 
 6.
 To deploy the users REST application to Kubernetes, execute the following
-using files from users-in-mem-app/src/main/resources/deployment/ folder of this project:
+using files from users-in-mem-app/deployment/ folder of this project:
 
+6.0 kubectl apply -f namespace.yml
 6.1 kubectl apply -f deployment-env1.yml
 6.2 kubectl apply -f deployment-env2.yml
 6.3 kubectl apply -f virtual-service.yml
 6.4 kubectl apply -f gateway.yml
+
+Alternatively, if Tilt is installed, all that is needed for full flow (!) of
+compiling, creating docker image and deploying to kubernetes is just executing the following from users-in-mem-app:
+tilt up
 
